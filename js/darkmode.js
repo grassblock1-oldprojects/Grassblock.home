@@ -2,12 +2,14 @@
  * Dark Mode
  * 
  * @author  FlyingSky-CN
- * @version MDr-1.0.4
+ * @version MDr-2.0.0
  */
 
 /** Attention: Dark Mode 不使用 jQuery 库 */
+const $ = JQ;
+
 window.onDarkMode = () => {
-    var body = mdui.JQ('body'),
+    var body = $('body'),
         appbar = document.getElementsByClassName('mdui-appbar')[0];
     console.log('Dark mode on');
     document.cookie = "dark=1;path=/";
@@ -15,11 +17,11 @@ window.onDarkMode = () => {
     body.removeClass('mdui-theme-accent-blue');
     body.addClass('mdui-theme-accent-light-blue');
     appbar.style.backgroundColor = '#212121';
-    var meta = document.getElementsByTagName('meta');
-    meta["theme-color"].setAttribute('content', '#212121');
+    // var meta = document.getElementsByTagName('meta');
+    // meta["theme-color"].setAttribute('content', '#212121');
 }
 window.offDarkMode = () => {
-    var body = mdui.JQ('body'),
+    var body = $('body'),
         appbar = document.getElementsByClassName('mdui-appbar')[0];
     console.log('Dark mode off');
     document.cookie = "dark=0;path=/";
@@ -27,13 +29,13 @@ window.offDarkMode = () => {
     body.removeClass('mdui-theme-accent-light-blue');
     body.addClass('mdui-theme-accent-blue');
     appbar.style.backgroundColor = '#ffffff';
-    var meta = document.getElementsByTagName('meta');
-    meta["theme-color"].setAttribute('content', '#FFFFFF');
+    // var meta = document.getElementsByTagName('meta');
+    // meta["theme-color"].setAttribute('content', '#FFFFFF');
 }
 /* Dark Mode 对于 @print 的适配 */
 window.addEventListener("beforeprint", function () {
-    var body = mdui.JQ('body'),
-        appbar = mdui.JQ('.mdui-appbar');
+    var body = $('body'),
+        appbar = $('.mdui-appbar');
     appbar.hide();
     if (body.hasClass('mdui-theme-layout-dark')) {
         body.addClass('mdui-theme-layout-dark-print');
@@ -41,8 +43,8 @@ window.addEventListener("beforeprint", function () {
     }
 });
 window.addEventListener("afterprint", function () {
-    var body = mdui.JQ('body'),
-        appbar = mdui.JQ('.mdui-appbar');
+    var body = $('body'),
+        appbar = $('.mdui-appbar');
     appbar.show();
     if (body.hasClass('mdui-theme-layout-dark-print')) {
         body.addClass('mdui-theme-layout-dark');
