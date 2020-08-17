@@ -5,7 +5,7 @@
  * @version MDr-1.0.4
  */
 
-/**Attention: Dark Mode 不使用 jQuery 库 */
+/** Attention: Dark Mode 不使用 jQuery 库 */
 window.onDarkMode = () => {
     var body = mdui.JQ('body'),
         appbar = document.getElementsByClassName('mdui-appbar')[0];

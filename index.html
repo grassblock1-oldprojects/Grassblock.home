@@ -1,508 +1,566 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Grassblock's Home</title>   	
-    <!-- MDUI CSS -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css"
-  integrity="sha384-2PJ2u4NYg6jCNNpv3i1hK9AoAqODy6CdiC+gYiL2DVx+ku5wzJMFNdE3RoWfBIRP"
-  crossorigin="anonymous"
-/>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Grassblock's Home</title>
+	<!-- MDUI CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css"
+		integrity="sha384-2PJ2u4NYg6jCNNpv3i1hK9AoAqODy6CdiC+gYiL2DVx+ku5wzJMFNdE3RoWfBIRP" crossorigin="anonymous" />
 
-<!-- MDUI JavaScript -->
-<script
-  src="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/js/mdui.min.js"
-  integrity="sha384-aB8rnkAu/GBsQ1q6dwTySnlrrbhqDwrDnpVHR2Wgm8pWLbwUnzDcIROX3VvCbaK+"
-  crossorigin="anonymous"
-></script>
-<!-- 网站图标-->
-    <link rel="shortcut icon" href="faviconm.png"/>
-<link rel="bookmark" href="faviconm.png"/>
+	<!-- MDUI JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/js/mdui.min.js"
+		integrity="sha384-aB8rnkAu/GBsQ1q6dwTySnlrrbhqDwrDnpVHR2Wgm8pWLbwUnzDcIROX3VvCbaK+"
+		crossorigin="anonymous"></script>
+	<!-- 网站图标-->
+	<link rel="shortcut icon" href="faviconm.png" />
+	<link rel="bookmark" href="faviconm.png" />
 
-<!-- 当为darkmode时降低图片亮度，防止瞎眼-->
-<style>
-body.night img {
-    filter: brightness(50%);
-}
-</style>
-<!-- 播放器相关-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/color-thief-don@2.0.2/src/color-thief.js"></script>
-<!-- 使Drawer不遮挡顶栏并解决桌面上奇奇怪怪的问题-->
- <style type="text/css">
-.mdui-drawer {
-    z-index: 4000;
-}
-@keyframes fadein-2 {
-0% {
-        opacity: 0;
-}
-25% {
-        opacity: 0;
-        transform: translate(-128px, -24px);
-}
-100% {
-        opacity: 1;
-}
-}
-@media (min-width: 1024px) {
-.mdui-drawer {
-        animation: fadein-2 1s ease;
-}
-}
-</style>
-<!-- 主页渐变效果 Thx to Flyingsky-->
-<style type="text/css">
-.me-title {
-    margin-top: -56px;
-    padding-top: 14px;
-    height: 100vh;
-    position: relative;
-    margin-bottom: 8px;
-}
-@media (max-width: 959px) and (orientation: landscape) {
-.me-title {
-        margin-top: -48px;
-        padding-top: 12px;
-}
-}
-@media (min-width: 600px) {
-.me-title {
-        margin-top: -64px;
-        padding-top: 16px;
-}
-}
-.me-title-text {
-    padding: 32px;
-}
-.me-title-text .mdui-icon {
-    margin-bottom: 32px;
-    font-size: 192px;
-    opacity: 0.05;
-}
-.me-title-icon {
-    position: absolute;
-    right: 24px;
-}
-.me-title-icon .mdui-icon {
-    font-size: 256px;
-    opacity: 0.05;
-}
-.me-title:hover .mdui-icon {
-    transform: rotate(360deg);
-    transition: 0.25s;
-}
-.me-title-text.mdui-hidden-sm-up {
-    text-align: center;
-}
-
-</style>
-<style type="text/css">
-.mdui-container {
-    animation: fadein-0 1.5s ease;
-}
-#app {
-    animation: fadein-0 0.5s ease;
-}
-@keyframes fadein-0 {
-0% {
-        opacity: 0;
-}
-25% {
-        opacity: 0;
-        transform: translateX(-12px);
-}
-100% {
-        opacity: 1;
-}
-}
-</style>
-</style>
-<!--引入Gitalk评论区-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-</head>
-<body class="mdui-theme-accent-blue mdui-drawer-body-left mdui-theme-layout-auto mdui-loaded">
-<header>
- <div class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-toolbar-hide" style="background: rgb(255, 255, 255); z-index: 5000;">
-  <div class="mdui-toolbar mdui-color-theme">
-    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#main-drawer', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
-    <a href="https://acfk.xyz" class="mdui-typo-headline">草方块</a>
-    <a href="javascript:;" class="mdui-typo-title">主页</a>
-    <div class="mdui-toolbar-spacer"></div>
-    <a href="javascript:location.reload();" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
-    <a onclick="switchDarkMode()" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">brightness_medium</i></a>
-  </div>
-</div>
-<nav id="main-drawer" class="mdui-drawer mdui-drawer-close">
-		
-	<div class="mdui-appbar mdui-hidden-md-up mdui-shadow-0">
-			
-		<div class="mdui-toolbar"></div></div>
-				<div class="mdui-grid-tile">
-           	  <img src="https://api.zhoublog.xyz/pic.php" />
-           	    <div class="mdui-grid-tile-actions mdui-grid-tile-actions-gradient">
-           	  	<div class="mdui-grid-tile-text">
-    			  <div class="mdui-grid-tile-title"> 此生无悔入MC 来世愿做方块人！ </div>
-    </div>
-  </div>
-</div>
-		<ul class="mdui-list">  <a href="https://fsky7.com/"><li class="mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">gesture</i> <div class="mdui-list-item-content">主页 | Home</div> </li></a>
-		<ul class="mdui-list" mdui-collapse="{accordion: true}">
-		<li class="mdui-collapse-item">
-    <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">public</i>
-      <div class="mdui-list-item-content">博客 | Blog</div>
-    </div>
-    <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-      <li class="mdui-list-item mdui-ripple">Typecho （主站）</li>
-      <li class="mdui-list-item mdui-ripple">Hexo</li>
-      <li class="mdui-list-item mdui-ripple">Jekyll</li>
-    </ul>
-  </li>
-
-		<li class="mdui-collapse-item mdui-collapse-item-open"> <div class="mdui-collapse-item-header mdui-list-item mdui-ripple"> <svg t="1597484619950" class="icon mdui-list-item-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="20877" width="16" height="16"><path d="M213.333333 810.666667a42.666667 42.666667 0 0 0 42.666667 42.666666h512a42.666667 42.666667 0 0 0 42.666667-42.666666c0-8.96-2.986667-17.493333-7.68-24.32L554.666667 356.266667V170.666667h-85.333334v185.6L221.013333 786.346667c-4.693333 6.826667-7.68 15.36-7.68 24.32m42.666667 128a128 128 0 0 1-128-128c0-25.6 7.68-49.493333 21.333333-69.546667L384 333.226667V256a42.666667 42.666667 0 0 1-42.666667-42.666667V170.666667a85.333333 85.333333 0 0 1 85.333334-85.333334h170.666666a85.333333 85.333333 0 0 1 85.333334 85.333334v42.666666a42.666667 42.666667 0 0 1-42.666667 42.666667v77.226667l234.666667 407.893333c13.653333 20.053333 21.333333 43.946667 21.333333 69.546667a128 128 0 0 1-128 128H256z" fill="#673AB7" p-id="20878"></path></svg> <div class="mdui-list-item-content">实验室 | Lab</div></div>
-		<ul class="mdui-collapse-item-body mdui-list mdui-list-dense"> <a href="javascript:comingsoon();"><li class="mdui-list-item mdui-ripple">Typecho theme | GrassMaterial</li></a>
-		<a href="https://t.me/Grassblock_game"> <li class="mdui-list-item mdui-ripple">某小小的mc服务器</li></a>
-		<a href="javascript:comingsoon();"> <li class="mdui-list-item mdui-ripple">茶话室の语录</li></a>
-		<a href="https://for1833.fsky7.com"> <li class="mdui-list-item mdui-ripple">Telegram | 喵体中文</li></a>
-		<a href="https://fsky7.com"> <li class="mdui-list-item mdui-ripple">Telegram | Minecraft中文</li></a>
-		<a href="https://fsky7.com"> <li class="mdui-list-item mdui-ripple">Grassblock's Website</li></a>
-		</ul></li></ul>
-			
-		</nav>
-	</div>
-     
-	</header>
-	<div class="mdui-container"> <div class="me-title mdui-valign"><div class="me-title-text mdui-hidden-xs"><div class="mdui-typo-display-3">Grassblock</div> <br> <div class="mdui-typo-subheading-opacity">高中生一枚～</div></div> <div class="me-title-text mdui-hidden-sm-up mdui-center"><i id="me-title-icon" class="mdui-icon material-icons">device_hub</i> <br> <div class="mdui-typo-display-3">Grassblock</div> <br> <div class="mdui-typo-subheading-opacity">高中生一枚～</div></div> <div class="me-title-icon mdui-hidden-xs"><i class="mdui-icon material-icons">device_hub</i></div></div>
-	
-	<div class="mdui-card">
-
-  <!-- 介绍卡片头部，包含头像、标题、副标题 -->
-  <div class="mdui-card-header">
-  	<img class="mdui-card-header-avatar" src="https://i.loli.net/2020/07/28/t9qrX31bv2Uw87a.gif"/>
-    <div class="mdui-card-header-title">关于咱</div>
-     <div class="mdui-card-header-subtitle">目前已知的情报</div>
-  </div>
-  
-  
-  <!-- 个人的内容 -->
-   <div class="mdui-card-content">
-   		
-   	<p>你好，我是草方块！一个喜欢编程的人（</p>
-<p>是个蓝孩纸辣（ <del>虽然有时候像小孩子</del></p>
-<p>喜欢在Telegram 水群（</p>
-<p>也会时不时地在有熟人的QQ群里水水（</p>
-<p>对某些方面比较了解 但还是想学习新的东西～</p>
-<p>是河北人辣，欢迎老乡来私聊 qwq</p>
-<p>喜欢一些可爱的东西</p>
-<p>喜欢咕果（谷歌）的大多数东西（毕竟很好看</p>
-<p>喜欢玩 Minecraft ，主要是玩基岩版（可以在群中问问我的xbox id（</p>
-<p>仰望各界大佬中 awa</p>
-<p>时不时地会咕咕咕（还是作业太多了</p>
-<!-- 战斗力-->
-	<ul class="mdui-list" mdui-collapse="{accordion: true}">
-<li class="mdui-collapse-item mdui-collapse-item-open">
-     <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-      <i class="mdui-list-item-icon mdui-icon material-icons">accessibility</i>
-      <div class="mdui-list-item-content">战斗力？</div>
-      <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-    </div>
-     <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-      <div class="mdui-row">
-	                            <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4" mdui-tooltip="{content: '制作网站的能力:非常菜，基本就是抄代码了（bushi'}">
-	                            	   <div class="rin-progress-title">
-	                                    HTML/CSS
-	                                </div>
-	
-	                                <div class="mdui-progress">
-	                                    <div class="mdui-progress-determinate" style="width: 14%;"></div>
-	                                </div>
-
-	                            </div>
-	                            <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4" mdui-tooltip="{content: '赞美世界上最好的语言的能力'}">
-	                                <div class="rin-progress-title">
-	                                    PHP
-	                                </div>
-	                                <div class="mdui-progress">
-	                                    <div class="mdui-progress-determinate" style="width: 25%;"></div>
-	                                </div>
-	                            </div>
-	
-	                            <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4"
-	                                 mdui-tooltip="{content: '现用现学的能力:我太蔡了'}">
-	                                <div class="rin-progress-title">
-	                                    JavaScript
-	                                </div>
-	                                <div class="mdui-progress">
-	                                    <div class="mdui-progress-determinate" style="width: 10%;"></div>
-	                                </div>
-	                                </div>
-	                                  <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4"
-	                                 mdui-tooltip="{content: '正在学了（咕咕咕'}">
-	                                <div class="rin-progress-title">
-	                                    Python
-	                                </div>
-	                                <div class="mdui-progress">
-	                                    <div class="mdui-progress-determinate" style="width: 5%;"></div>
-	                                </div>
-	                            </div>
-	                            </div>
-	                        
-	                        <div class="mdui-row">
-	                             <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4" mdui-tooltip="{content: '真的非常可爱√'}">
-	                                <div class="rin-progress-title">
-	                                    萌属性
-	                                </div>
-	                                <div class="mdui-progress">
-	                                    <div class="mdui-progress-determinate" style="width: 90%;"></div>
-	                                </div>
-	                            </div>
-	
-	                            <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4"
-	                                 mdui-tooltip="{content: '让奇怪的事情发生的能力'}">
-	                                <div class="rin-progress-title">
-	                                    搞事情
-	                                </div>
-	                                <div class="mdui-progress">
-	                                    <div class="mdui-progress-determinate" style="width: 40%;"></div>
-	                                </div>
-	                            </div>
-	
-	                            <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4"
-	                                 mdui-tooltip="{content: '对他人的情感深度'}">
-	                                <div class="rin-progress-title">
-	                                    情感
-	                                </div>
-	                                <div class="mdui-progress">
-	                                    <div class="mdui-progress-determinate" style="width: 85%;"></div>
-	                                </div>
-	                            </div>
-	                        </div>
-
-	                        <div class="mdui-row">
-	                            <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4"
-	                                 mdui-tooltip="{content: '社交能力<del>(有时候会社恐</del>，喜欢和友善的人交朋友～'}">
-	                                <div class="rin-progress-title">
-	                                    社交
-	                                </div>
-	                                <div class="mdui-progress">
-	                                    <div class="mdui-progress-determinate" style="width: 35%;"></div>
-	                                </div>
-	                            </div>
-
-	                            <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4"
-	                                 mdui-tooltip="{content: '做事情的耐心程度'}">
-	                                <div class="rin-progress-title">
-	                                    耐心
-	                                </div>
-	                                <div class="mdui-progress">
-	                                    <div class="mdui-progress-determinate" style="width: 55%;"></div>
-	                                </div>
-	                            </div>
-	
-	                            <div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4"
-	                                 mdui-tooltip="{content: '对这个世界热爱的程度'}">
-	                                <div class="rin-progress-title">
-	                                    世界
-	                                </div>
-	                                <div class="mdui-progress">
-	                                    <div class="mdui-progress-determinate" style="width: 51%;"></div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <!-- 设定-->
-    </ul>
-  </li>
-        <li class="mdui-collapse-item mdui-collapse-item-close">
-    <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-      <i class="mdui-list-item-icon mdui-icon material-icons">face</i>
-      <div class="mdui-list-item-content">设定？</div>
-      <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
-    </div>
-    <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-      <p>@Grass_block 博士的设定是</p>
-<p>职业：辅助（★★）</p>
-<p>位置：近战位</p>
-<p>性别：男性干员</p>
-<p>种族：鲁珀</p>
-<p>所属阵营：莱茵生命</p>
-<p>出生地：莱塔尼亚</p>
-<p>特性：</p>
-<p>物理强度：卓越</p>
-<p>战场机动：卓越</p>
-<p>生理耐受：卓越</p>
-<p>战术规划：卓越</p>
-<p>战斗技巧：标准</p>
-<p>源石技艺适应性：标准</p>
-    </ul>
-  </li>
-      
-    
-    </div>
-  </div>
-  
-	<br>
-		<br>
-			<br>
-	<!--可以把自己的除了侧边栏以外的网站放在这里～-->
-<div class="mdui-card">
-	
-  <!-- 卡片的媒体内容，可以包含图片、视频等媒体内容，以及标题、副标题 -->
-  <div class="mdui-card-media">
-    <img src="card.jpg"/>
- <div class="mdui-card-menu">
-      <button class="mdui-btn mdui-btn-icon mdui-text-color-white"><i class="mdui-icon material-icons">bookmark</i></button>
-    </div>
-  </div>
-    
-  <!-- 卡片的标题和副标题 -->
-   <div class="mdui-card-primary">
-    <div class="mdui-card-primary-title">我的网站</div>
-    <div class="mdui-card-primary-subtitle">一些精选的网站</div>
-  </div>
-
-  <!-- 卡片的内容 -->
-  <div class="mdui-card-content">注：其中有一部分可能与侧边栏中的重复
-  <br>
-  	<del>不知道是什么？点一下看看呗（</del>
-  	<br>
-  		<button class="mdui-btn mdui-color-theme-accent mdui-ripple"><i class="mdui-icon mdui-icon-left material-icons">create</i> Blog</button>
-  		<button class="mdui-btn mdui-color-red mdui-ripple"><i class="mdui-icon mdui-icon-left material-icons">web_asset</i> O.Newtab</button>
-  		<br>
-  			<br>
-  		<button class="mdui-btn mdui-color-yellow mdui-ripple"> <i class="mdui-icon mdui-icon-left material-icons">forum</i> Forum</button>
-  		<br>
-  			<br>
-      	<button class="mdui-btn mdui-color-green mdui-ripple"> <svg t="1597558456662" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2710" width="16" height="16"><path d="M170.666667 85.333333h682.666666a85.333333 85.333333 0 0 1 85.333334 85.333334v682.666666a85.333333 85.333333 0 0 1-85.333334 85.333334H170.666667a85.333333 85.333333 0 0 1-85.333334-85.333334V170.666667a85.333333 85.333333 0 0 1 85.333334-85.333334m85.333333 170.666667v170.666667h170.666667v85.333333H341.333333v256h85.333334v-85.333333h170.666666v85.333333h85.333334v-256h-85.333334v-85.333333h170.666667V256h-170.666667v170.666667h-170.666666V256H256z" fill="#333333" p-id="2711"></path></svg> Minecraft</button>
-      	<button class="mdui-btn mdui-color-orange mdui-ripple"> <i class="mdui-icon mdui-icon-left material-icons">music_note</i> Music</button>
-      	<br>
-      		<br>
-     	<button class="mdui-btn mdui-color-theme-accent mdui-ripple"> <i class="mdui-icon mdui-icon-left material-icons">attach_file</i> Cloud Drive</button>
-     	<br>
-     		<br>
-          	<button class="mdui-btn mdui-color-theme-accent mdui-ripple"> <i class="mdui-icon mdui-icon-left material-icons">domain</i> Google Pages （咕咕咕）</button>
-  	</div>
-  </div>
-</div>
-<br>
- <br>
-	<br>
-		
-<div class="mdui-card">
-  <!-- 留言卡片头部，包含标题、副标题 -->
-  <div class="mdui-card-header">
-    <div class="mdui-card-header-title">小小留言板</div>
-    <div class="mdui-card-header-subtitle">来留言吧</div>
-  </div>
-
-  <!-- 评论区 -->
-  <div class="mdui-card-content">子曰：「学而时习之，不亦说乎？有朋自远方来，不亦乐乎？人不知，而不愠，不亦君子乎？」
-  <br>
-  		<div id="gitalk">
-  				<script>
-  					var gitalk = new Gitalk({
-                      clientID: 'Iv1.bc62e3e249198e35',
-                      clientSecret: '9b51ea47f4368923814e0a8bf0a3d5d6ae898bcf',
-  					repo: 'teamc',
-  					owner: 'Grassblock1',
- 					 admin: ['Grassblock1'],
-  					id: location.pathname,      // Ensure uniqueness and length less than 50
-  					distractionFreeMode: false  // Facebook-like distraction free mode
-})
-gitalk.render('gitalk')
-				</script>
-  				</div>
-  	</div>
-</div>
-
-<br>
-	<footer>
-	<div id="footer" align="center"> <p id="hitokoto_text">:D 获取中...</p>
-		<p> © 草方块 2020 </p>
-		网站已在风雨中运行 <span id="runtime_span"></span> .<br/>
-		<script>
-		function show_runtime() {
-			window.setTimeout("show_runtime()",1000);
-			var X = new Date("06/20/2020 20:00:00"),
-				Y = new Date(),
-				T = (Y.getTime()-X.getTime()),
-				M = 24*60*60*1000,
-				a = T/M,
-				A = Math.floor(a),
-				b = (a-A)*24,
-				B = Math.floor(b),
-				c = (b-B)*60,
-				C = Math.floor((b-B)*60),
-				D = Math.floor((c-C)*60);
-			runtime_span.innerHTML = A+" 天 "+B+" 时 "+C+" 分 "+D+" 秒";
+	<!-- 当为darkmode时降低图片亮度，防止瞎眼-->
+	<style>
+		body.night img {
+			filter: brightness(50%);
 		}
-		show_runtime();
-		</script>
-		<img style="width:32px;height:32px;margin-bottom:-8px" src="https://icp.gov.moe/images/ico64.png" /> <a href="https://icp.gov.moe"  target="_blank" class="mdui-text-color-blue">萌ICP备 </a> <a href="https://icp.gov.moe/?keyword=20208787666" target="_blank" class="mdui-text-color-blue"> 20208787666号</a>  <br>
+	</style>
+	<!-- 播放器相关-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/color-thief-don@2.0.2/src/color-thief.js"></script>
+	<!-- 使Drawer不遮挡顶栏并解决桌面上奇奇怪怪的问题-->
+	<style type="text/css">
+		.mdui-drawer {
+			z-index: 4000;
+		}
+
+		@keyframes fadein-2 {
+			0% {
+				opacity: 0;
+			}
+
+			25% {
+				opacity: 0;
+				transform: translate(-128px, -24px);
+			}
+
+			100% {
+				opacity: 1;
+			}
+		}
+
+		@media (min-width: 1024px) {
+			.mdui-drawer {
+				animation: fadein-2 1s ease;
+			}
+		}
+	</style>
+	<!-- 主页渐变效果 Thx to Flyingsky-->
+	<style type="text/css">
+		.me-title {
+			margin-top: -56px;
+			padding-top: 14px;
+			height: 100vh;
+			position: relative;
+			margin-bottom: 8px;
+		}
+
+		@media (max-width: 959px) and (orientation: landscape) {
+			.me-title {
+				margin-top: -48px;
+				padding-top: 12px;
+			}
+		}
+
+		@media (min-width: 600px) {
+			.me-title {
+				margin-top: -64px;
+				padding-top: 16px;
+			}
+		}
+
+		.me-title-text {
+			padding: 32px;
+		}
+
+		.me-title-text .mdui-icon {
+			margin-bottom: 32px;
+			font-size: 192px;
+			opacity: 0.05;
+		}
+
+		.me-title-icon {
+			position: absolute;
+			right: 24px;
+		}
+
+		.me-title-icon .mdui-icon {
+			font-size: 256px;
+			opacity: 0.05;
+		}
+
+		.me-title:hover .mdui-icon {
+			transform: rotate(360deg);
+			transition: 0.25s;
+		}
+
+		.me-title-text.mdui-hidden-sm-up {
+			text-align: center;
+		}
+	</style>
+	<style type="text/css">
+		.mdui-container {
+			animation: fadein-0 1.5s ease;
+		}
+
+		#app {
+			animation: fadein-0 0.5s ease;
+		}
+
+		@keyframes fadein-0 {
+			0% {
+				opacity: 0;
+			}
+
+			25% {
+				opacity: 0;
+				transform: translateX(-12px);
+			}
+
+			100% {
+				opacity: 1;
+			}
+		}
+	</style>
+	</style>
+	<!--引入Gitalk评论区-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+</head>
+
+<body class="mdui-theme-accent-blue mdui-drawer-body-left mdui-theme-layout-auto mdui-loaded">
+	<header>
+		<div class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-toolbar-hide"
+			style="background: rgb(255, 255, 255); z-index: 5000;">
+			<div class="mdui-toolbar mdui-color-theme">
+				<a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#main-drawer', swipe: true}"><i
+						class="mdui-icon material-icons">menu</i></a>
+				<a href="https://acfk.xyz" class="mdui-typo-headline">草方块</a>
+				<a href="javascript:;" class="mdui-typo-title">主页</a>
+				<div class="mdui-toolbar-spacer"></div>
+				<a href="javascript:location.reload();" class="mdui-btn mdui-btn-icon"><i
+						class="mdui-icon material-icons">refresh</i></a>
+				<a onclick="switchDarkMode()" class="mdui-btn mdui-btn-icon"><i
+						class="mdui-icon material-icons">brightness_medium</i></a>
+			</div>
+		</div>
+		<nav id="main-drawer" class="mdui-drawer mdui-drawer-close">
+
+			<div class="mdui-appbar mdui-hidden-md-up mdui-shadow-0">
+
+				<div class="mdui-toolbar"></div>
+			</div>
+			<div class="mdui-grid-tile">
+				<img src="https://api.zhoublog.xyz/pic.php" />
+				<div class="mdui-grid-tile-actions mdui-grid-tile-actions-gradient">
+					<div class="mdui-grid-tile-text">
+						<div class="mdui-grid-tile-title"> 此生无悔入MC 来世愿做方块人！ </div>
+					</div>
+				</div>
+			</div>
+			<ul class="mdui-list"> <a href="https://fsky7.com/">
+					<li class="mdui-list-item mdui-ripple"><i
+							class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">gesture</i>
+						<div class="mdui-list-item-content">主页 | Home</div>
+					</li>
+				</a>
+				<ul class="mdui-list" mdui-collapse="{accordion: true}">
+					<li class="mdui-collapse-item">
+						<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+							<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">public</i>
+							<div class="mdui-list-item-content">博客 | Blog</div>
+						</div>
+						<ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+							<li class="mdui-list-item mdui-ripple">Typecho （主站）</li>
+							<li class="mdui-list-item mdui-ripple">Hexo</li>
+							<li class="mdui-list-item mdui-ripple">Jekyll</li>
+						</ul>
+					</li>
+
+					<li class="mdui-collapse-item mdui-collapse-item-open">
+						<div class="mdui-collapse-item-header mdui-list-item mdui-ripple"> <svg t="1597484619950"
+								class="icon mdui-list-item-icon" viewBox="0 0 1024 1024" version="1.1"
+								xmlns="http://www.w3.org/2000/svg" p-id="20877" width="16" height="16">
+								<path
+									d="M213.333333 810.666667a42.666667 42.666667 0 0 0 42.666667 42.666666h512a42.666667 42.666667 0 0 0 42.666667-42.666666c0-8.96-2.986667-17.493333-7.68-24.32L554.666667 356.266667V170.666667h-85.333334v185.6L221.013333 786.346667c-4.693333 6.826667-7.68 15.36-7.68 24.32m42.666667 128a128 128 0 0 1-128-128c0-25.6 7.68-49.493333 21.333333-69.546667L384 333.226667V256a42.666667 42.666667 0 0 1-42.666667-42.666667V170.666667a85.333333 85.333333 0 0 1 85.333334-85.333334h170.666666a85.333333 85.333333 0 0 1 85.333334 85.333334v42.666666a42.666667 42.666667 0 0 1-42.666667 42.666667v77.226667l234.666667 407.893333c13.653333 20.053333 21.333333 43.946667 21.333333 69.546667a128 128 0 0 1-128 128H256z"
+									fill="#673AB7" p-id="20878"></path>
+							</svg>
+							<div class="mdui-list-item-content">实验室 | Lab</div>
+						</div>
+						<ul class="mdui-collapse-item-body mdui-list mdui-list-dense"> <a href="javascript:comingsoon();">
+								<li class="mdui-list-item mdui-ripple">Typecho theme | GrassMaterial</li>
+							</a>
+							<a href="https://t.me/Grassblock_game">
+								<li class="mdui-list-item mdui-ripple">某小小的mc服务器</li>
+							</a>
+							<a href="javascript:comingsoon();">
+								<li class="mdui-list-item mdui-ripple">茶话室の语录</li>
+							</a>
+							<a href="https://for1833.fsky7.com">
+								<li class="mdui-list-item mdui-ripple">Telegram | 喵体中文</li>
+							</a>
+							<a href="https://fsky7.com">
+								<li class="mdui-list-item mdui-ripple">Telegram | Minecraft中文</li>
+							</a>
+							<a href="https://fsky7.com">
+								<li class="mdui-list-item mdui-ripple">Grassblock's Website</li>
+							</a>
+						</ul>
+					</li>
+				</ul>
+
+		</nav>
+		</div>
+
+	</header>
+	<div class="mdui-container">
+		<div class="me-title mdui-valign">
+			<div class="me-title-text mdui-hidden-xs">
+				<div class="mdui-typo-display-3">Grassblock</div> <br>
+				<div class="mdui-typo-subheading-opacity">高中生一枚～</div>
+			</div>
+			<div class="me-title-text mdui-hidden-sm-up mdui-center"><i id="me-title-icon"
+					class="mdui-icon material-icons">device_hub</i> <br>
+				<div class="mdui-typo-display-3">Grassblock</div> <br>
+				<div class="mdui-typo-subheading-opacity">高中生一枚～</div>
+			</div>
+			<div class="me-title-icon mdui-hidden-xs"><i class="mdui-icon material-icons">device_hub</i></div>
+		</div>
+
+		<div class="mdui-card">
+
+			<!-- 介绍卡片头部，包含头像、标题、副标题 -->
+			<div class="mdui-card-header">
+				<img class="mdui-card-header-avatar" src="https://i.loli.net/2020/07/28/t9qrX31bv2Uw87a.gif" />
+				<div class="mdui-card-header-title">关于咱</div>
+				<div class="mdui-card-header-subtitle">目前已知的情报</div>
+			</div>
+
+
+			<!-- 个人的内容 -->
+			<div class="mdui-card-content">
+
+				<p>你好，我是草方块！一个喜欢编程的人（</p>
+				<p>是个蓝孩纸辣（ <del>虽然有时候像小孩子</del></p>
+				<p>喜欢在Telegram 水群（</p>
+				<p>也会时不时地在有熟人的QQ群里水水（</p>
+				<p>对某些方面比较了解 但还是想学习新的东西～</p>
+				<p>是河北人辣，欢迎老乡来私聊 qwq</p>
+				<p>喜欢一些可爱的东西</p>
+				<p>喜欢咕果（谷歌）的大多数东西（毕竟很好看</p>
+				<p>喜欢玩 Minecraft ，主要是玩基岩版（可以在群中问问我的xbox id（</p>
+				<p>仰望各界大佬中 awa</p>
+				<p>时不时地会咕咕咕（还是作业太多了</p>
+				<!-- 战斗力-->
+				<ul class="mdui-list" mdui-collapse="{accordion: true}">
+					<li class="mdui-collapse-item mdui-collapse-item-open">
+						<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+							<i class="mdui-list-item-icon mdui-icon material-icons">accessibility</i>
+							<div class="mdui-list-item-content">战斗力？</div>
+							<i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+						</div>
+						<ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+							<div class="mdui-row">
+								<div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4"
+									mdui-tooltip="{content: '制作网站的能力:非常菜，基本就是抄代码了（bushi'}">
+									<div class="rin-progress-title">
+										HTML/CSS
+									</div>
+
+									<div class="mdui-progress">
+										<div class="mdui-progress-determinate" style="width: 14%;"></div>
+									</div>
+
+								</div>
+								<div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4" mdui-tooltip="{content: '赞美世界上最好的语言的能力'}">
+									<div class="rin-progress-title">
+										PHP
+									</div>
+									<div class="mdui-progress">
+										<div class="mdui-progress-determinate" style="width: 25%;"></div>
+									</div>
+								</div>
+
+								<div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4" mdui-tooltip="{content: '现用现学的能力:我太蔡了'}">
+									<div class="rin-progress-title">
+										JavaScript
+									</div>
+									<div class="mdui-progress">
+										<div class="mdui-progress-determinate" style="width: 10%;"></div>
+									</div>
+								</div>
+								<div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4" mdui-tooltip="{content: '正在学了（咕咕咕'}">
+									<div class="rin-progress-title">
+										Python
+									</div>
+									<div class="mdui-progress">
+										<div class="mdui-progress-determinate" style="width: 5%;"></div>
+									</div>
+								</div>
+							</div>
+
+							<div class="mdui-row">
+								<div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4" mdui-tooltip="{content: '真的非常可爱√'}">
+									<div class="rin-progress-title">
+										萌属性
+									</div>
+									<div class="mdui-progress">
+										<div class="mdui-progress-determinate" style="width: 90%;"></div>
+									</div>
+								</div>
+
+								<div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4" mdui-tooltip="{content: '让奇怪的事情发生的能力'}">
+									<div class="rin-progress-title">
+										搞事情
+									</div>
+									<div class="mdui-progress">
+										<div class="mdui-progress-determinate" style="width: 40%;"></div>
+									</div>
+								</div>
+
+								<div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4" mdui-tooltip="{content: '对他人的情感深度'}">
+									<div class="rin-progress-title">
+										情感
+									</div>
+									<div class="mdui-progress">
+										<div class="mdui-progress-determinate" style="width: 85%;"></div>
+									</div>
+								</div>
+							</div>
+
+							<div class="mdui-row">
+								<div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4"
+									mdui-tooltip="{content: '社交能力<del>(有时候会社恐</del>，喜欢和友善的人交朋友～'}">
+									<div class="rin-progress-title">
+										社交
+									</div>
+									<div class="mdui-progress">
+										<div class="mdui-progress-determinate" style="width: 35%;"></div>
+									</div>
+								</div>
+
+								<div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4" mdui-tooltip="{content: '做事情的耐心程度'}">
+									<div class="rin-progress-title">
+										耐心
+									</div>
+									<div class="mdui-progress">
+										<div class="mdui-progress-determinate" style="width: 55%;"></div>
+									</div>
+								</div>
+
+								<div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4" mdui-tooltip="{content: '对这个世界热爱的程度'}">
+									<div class="rin-progress-title">
+										世界
+									</div>
+									<div class="mdui-progress">
+										<div class="mdui-progress-determinate" style="width: 51%;"></div>
+									</div>
+								</div>
+							</div>
+							<!-- 设定-->
+						</ul>
+					</li>
+					<li class="mdui-collapse-item mdui-collapse-item-close">
+						<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+							<i class="mdui-list-item-icon mdui-icon material-icons">face</i>
+							<div class="mdui-list-item-content">设定？</div>
+							<i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+						</div>
+						<ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+							<p>@Grass_block 博士的设定是</p>
+							<p>职业：辅助（★★）</p>
+							<p>位置：近战位</p>
+							<p>性别：男性干员</p>
+							<p>种族：鲁珀</p>
+							<p>所属阵营：莱茵生命</p>
+							<p>出生地：莱塔尼亚</p>
+							<p>特性：</p>
+							<p>物理强度：卓越</p>
+							<p>战场机动：卓越</p>
+							<p>生理耐受：卓越</p>
+							<p>战术规划：卓越</p>
+							<p>战斗技巧：标准</p>
+							<p>源石技艺适应性：标准</p>
+						</ul>
+					</li>
+
+
+			</div>
+		</div>
+
+		<br>
+		<br>
+		<br>
+		<!--可以把自己的除了侧边栏以外的网站放在这里～-->
+		<div class="mdui-card">
+
+			<!-- 卡片的媒体内容，可以包含图片、视频等媒体内容，以及标题、副标题 -->
+			<div class="mdui-card-media">
+				<img src="card.jpg" />
+				<div class="mdui-card-menu">
+					<button class="mdui-btn mdui-btn-icon mdui-text-color-white"><i
+							class="mdui-icon material-icons">bookmark</i></button>
+				</div>
+			</div>
+
+			<!-- 卡片的标题和副标题 -->
+			<div class="mdui-card-primary">
+				<div class="mdui-card-primary-title">我的网站</div>
+				<div class="mdui-card-primary-subtitle">一些精选的网站</div>
+			</div>
+
+			<!-- 卡片的内容 -->
+			<div class="mdui-card-content">注：其中有一部分可能与侧边栏中的重复
+				<br>
+				<del>不知道是什么？点一下看看呗（</del>
+				<br>
+				<button class="mdui-btn mdui-color-theme-accent mdui-ripple"><i
+						class="mdui-icon mdui-icon-left material-icons">create</i> Blog</button>
+				<button class="mdui-btn mdui-color-red mdui-ripple"><i
+						class="mdui-icon mdui-icon-left material-icons">web_asset</i> O.Newtab</button>
+				<br>
+				<br>
+				<button class="mdui-btn mdui-color-yellow mdui-ripple"> <i
+						class="mdui-icon mdui-icon-left material-icons">forum</i> Forum</button>
+				<br>
+				<br>
+				<button class="mdui-btn mdui-color-green mdui-ripple"> <svg t="1597558456662" class="icon"
+						viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2710" width="16" height="16">
+						<path
+							d="M170.666667 85.333333h682.666666a85.333333 85.333333 0 0 1 85.333334 85.333334v682.666666a85.333333 85.333333 0 0 1-85.333334 85.333334H170.666667a85.333333 85.333333 0 0 1-85.333334-85.333334V170.666667a85.333333 85.333333 0 0 1 85.333334-85.333334m85.333333 170.666667v170.666667h170.666667v85.333333H341.333333v256h85.333334v-85.333333h170.666666v85.333333h85.333334v-256h-85.333334v-85.333333h170.666667V256h-170.666667v170.666667h-170.666666V256H256z"
+							fill="#333333" p-id="2711"></path>
+					</svg> Minecraft</button>
+				<button class="mdui-btn mdui-color-orange mdui-ripple"> <i
+						class="mdui-icon mdui-icon-left material-icons">music_note</i> Music</button>
+				<br>
+				<br>
+				<button class="mdui-btn mdui-color-theme-accent mdui-ripple"> <i
+						class="mdui-icon mdui-icon-left material-icons">attach_file</i> Cloud Drive</button>
+				<br>
+				<br>
+				<button class="mdui-btn mdui-color-theme-accent mdui-ripple"> <i
+						class="mdui-icon mdui-icon-left material-icons">domain</i> Google Pages （咕咕咕）</button>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+
+	<div class="mdui-card">
+		<!-- 留言卡片头部，包含标题、副标题 -->
+		<div class="mdui-card-header">
+			<div class="mdui-card-header-title">小小留言板</div>
+			<div class="mdui-card-header-subtitle">来留言吧</div>
+		</div>
+
+		<!-- 评论区 -->
+		<div class="mdui-card-content">子曰：「学而时习之，不亦说乎？有朋自远方来，不亦乐乎？人不知，而不愠，不亦君子乎？」
+			<br>
+			<div id="gitalk">
+				<script>
+					var gitalk = new Gitalk({
+						clientID: 'Iv1.bc62e3e249198e35',
+						clientSecret: '9b51ea47f4368923814e0a8bf0a3d5d6ae898bcf',
+						repo: 'teamc',
+						owner: 'Grassblock1',
+						admin: ['Grassblock1'],
+						id: location.pathname,      // Ensure uniqueness and length less than 50
+						distractionFreeMode: false  // Facebook-like distraction free mode
+					})
+					gitalk.render('gitalk')
+				</script>
+			</div>
+		</div>
 	</div>
 
-</div> </footer>
-<!-- Darkmode,Thx to flyingsky-->
+	<br>
+	<footer>
+		<div id="footer" align="center">
+			<p id="hitokoto_text">:D 获取中...</p>
+			<p> © 草方块 2020 </p>
+			网站已在风雨中运行 <span id="runtime_span"></span> .<br />
+			<script>
+				function show_runtime() {
+					window.setTimeout("show_runtime()", 1000);
+					var X = new Date("06/20/2020 20:00:00"),
+						Y = new Date(),
+						T = (Y.getTime() - X.getTime()),
+						M = 24 * 60 * 60 * 1000,
+						a = T / M,
+						A = Math.floor(a),
+						b = (a - A) * 24,
+						B = Math.floor(b),
+						c = (b - B) * 60,
+						C = Math.floor((b - B) * 60),
+						D = Math.floor((c - C) * 60);
+					runtime_span.innerHTML = A + " 天 " + B + " 时 " + C + " 分 " + D + " 秒";
+				}
+				show_runtime();
+			</script>
+			<img style="width:32px;height:32px;margin-bottom:-8px" src="https://icp.gov.moe/images/ico64.png" /> <a
+				href="https://icp.gov.moe" target="_blank" class="mdui-text-color-blue">萌ICP备 </a> <a
+				href="https://icp.gov.moe/?keyword=20208787666" target="_blank" class="mdui-text-color-blue"> 20208787666号</a>
+			<br>
+		</div>
+
+		</div>
+	</footer>
+	<!-- Darkmode,Thx to flyingsky-->
 	<!-- 自动切换 貌似炸了-->
- <script src="./js/darkmode.js"></script>
-<!-- 手动切换，不过貌似只能白日>夜间-->
-<script>
-function switchDarkMode(){
-    var night = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
-    if (night == '0'){
-        document.body.classList.add('mdui-theme-layout-dark');
-        appbar.style.backgroundColor = '#212121';
-        document.cookie = "dark=1;path=/";
-        console.log('Dark mode on');
-    }
-      else{
-        document.body.classList.remove('mdui-theme-layout-dark');
-        document.cookie = "dark=0;path=/";
-        console.log('Dark mode off');
-    }
-}
-</script>
-<!-- 当网页加载完成时，弹出消息-->
-<script>
-	window.onload=function(){
-    mdui.snackbar({
-message: '欢迎。'
-});
-};
-</script>
-<!-- 音乐播放器，基于metingjs-->
-<div>
-<meting-js 
-	server="netease" 
-	type="playlist" 
-	id="814474369"
-	fixed="true" 
-	autoplay="false"
-	loop="all"
-	order="random"
-	preload="auto"
-	list-folded="true"
-	list-max-height="500px"
-	>
-</meting-js>	
-</div>
-<script src="https://daily.acfk.xyz/js/third-party/click_heart.js"> </script>
-    <script src="./js/comingsoon.js"> </script>
-    
-    <script>
-  fetch('https://v1.hitokoto.cn')
-    .then(response => response.json())
-    .then(data => {
-      const hitokoto = document.getElementById('hitokoto_text')
-      hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid
-      hitokoto.innerText = data.hitokoto
-    })
-    .catch(console.error)
-</script>
+	<script src="./js/darkmode.js"></script>
+	<!-- 手动切换，不过貌似只能白日>夜间-->
+	<script>
+		function switchDarkMode() {
+			var night = document.cookie.replace(/(?:(?:^|.*;\s*)dark\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
+			if (night == '0') {
+				document.body.classList.add('mdui-theme-layout-dark');
+				appbar.style.backgroundColor = '#212121';
+				document.cookie = "dark=1;path=/";
+				console.log('Dark mode on');
+			}
+			else {
+				document.body.classList.remove('mdui-theme-layout-dark');
+				document.cookie = "dark=0;path=/";
+				console.log('Dark mode off');
+			}
+		}
+	</script>
+	<!-- 当网页加载完成时，弹出消息-->
+	<script>
+		window.onload = function () {
+			mdui.snackbar({
+				message: '欢迎。'
+			});
+		};
+	</script>
+	<!-- 音乐播放器，基于metingjs-->
+	<div>
+		<meting-js server="netease" type="playlist" id="814474369" fixed="true" autoplay="false" loop="all" order="random"
+			preload="auto" list-folded="true" list-max-height="500px">
+		</meting-js>
+	</div>
+	<script src="https://daily.acfk.xyz/js/third-party/click_heart.js"> </script>
+	<script src="./js/comingsoon.js"> </script>
+
+	<script>
+		fetch('https://v1.hitokoto.cn')
+			.then(response => response.json())
+			.then(data => {
+				const hitokoto = document.getElementById('hitokoto_text')
+				hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+				hitokoto.innerText = data.hitokoto
+			})
+			.catch(console.error)
+	</script>
 </body>
