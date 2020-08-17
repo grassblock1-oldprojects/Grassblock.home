@@ -1,0 +1,54 @@
+/*
+  主页渐变效果 Thx to Flyingsky
+*/
+
+.me-title {
+  margin-top: -56px;
+  padding-top: 14px;
+  height: 100vh;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 959px) and (orientation: landscape) {
+  .me-title {
+    margin-top: -48px;
+    padding-top: 12px;
+  }
+}
+
+@media (min-width: 600px) {
+  .me-title {
+    margin-top: -64px;
+    padding-top: 16px;
+  }
+}
+
+.me-title-text {
+  padding: 32px;
+}
+
+.me-title-text .mdui-icon {
+  margin-bottom: 32px;
+  font-size: 192px;
+  opacity: 0.05;
+}
+
+.me-title-icon {
+  position: absolute;
+  right: 24px;
+}
+
+.me-title-icon .mdui-icon {
+  font-size: 256px;
+  opacity: 0.05;
+}
+
+.me-title:hover .mdui-icon {
+  transform: rotate(360deg);
+  transition: 0.25s;
+}
+
+.me-title-text.mdui-hidden-sm-up {
+  text-align: center;
+}

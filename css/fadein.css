@@ -1,0 +1,24 @@
+/* Fade in */
+
+.mdui-container {
+  animation: fadein-0 1.5s ease;
+}
+
+#app {
+  animation: fadein-0 0.5s ease;
+}
+
+@keyframes fadein-0 {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

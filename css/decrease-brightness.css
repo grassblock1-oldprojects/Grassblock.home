@@ -1,0 +1,5 @@
+/* 当为 darkmode 时降低图片亮度，防止瞎眼 */
+
+body.night img {
+  filter: brightness(50%);
+}

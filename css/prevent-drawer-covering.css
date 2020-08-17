@@ -1,0 +1,26 @@
+/* 使 Drawer 不遮挡顶栏并解决桌面上奇奇怪怪的问题 */
+
+.mdui-drawer {
+  z-index: 4000;
+}
+
+@keyframes fadein-2 {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0;
+    transform: translate(-128px, -24px);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mdui-drawer {
+    animation: fadein-2 1s ease;
+  }
+}
