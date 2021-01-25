@@ -15,10 +15,10 @@
 
 	<!-- 播放器相关 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
-	<!-- Gitalk -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<!-- Valine -->
+	<script src='https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js'></script>
 	<!-- 当为 darkmode 时降低图片亮度，防止瞎眼 -->
-	<link rel="stylesheet" href="css/decrease-brightness.css">
+	 <link rel="stylesheet" href="css/decrease-brightness.css">
 	<!-- 使 Drawer 不遮挡顶栏并解决桌面上奇奇怪怪的问题 -->
 	<link rel="stylesheet" href="css/prevent-drawer-covering.css">
 	<!-- 主页渐变效果 Thx to Flyingsky -->
@@ -313,26 +313,10 @@
 				<br>
 				<a href="https://blog.acfk.xyz"> <button class="mdui-btn mdui-color-theme-accent mdui-ripple"><i
 						class="mdui-icon mdui-icon-left material-icons">create</i> Blog</button> </a>
-				<a href="https://o.acfk.xyz"> <button class="mdui-btn mdui-color-red mdui-ripple"><i
-						class="mdui-icon mdui-icon-left material-icons">web_asset</i> O.Newtab</button> </a>
 				<br>
 				<br>
 				<a href="https://bbs.acfk.xyz"> <button class="mdui-btn mdui-color-yellow mdui-ripple"> <i
 						class="mdui-icon mdui-icon-left material-icons">forum</i> Forum</button> </a>
-				<br>
-				<br>
-				<a href="http://forum.acfk.xyz"> <button class="mdui-btn mdui-color-green mdui-ripple"> <svg t="1597558456662" class="icon"
-						viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2710" width="16" height="16">
-						<path
-							d="M170.666667 85.333333h682.666666a85.333333 85.333333 0 0 1 85.333334 85.333334v682.666666a85.333333 85.333333 0 0 1-85.333334 85.333334H170.666667a85.333333 85.333333 0 0 1-85.333334-85.333334V170.666667a85.333333 85.333333 0 0 1 85.333334-85.333334m85.333333 170.666667v170.666667h170.666667v85.333333H341.333333v256h85.333334v-85.333333h170.666666v85.333333h85.333334v-256h-85.333334v-85.333333h170.666667V256h-170.666667v170.666667h-170.666666V256H256z"
-							fill="#333333" p-id="2711"></path>
-					</svg> Minecraft</button> </a>
-				<a href="http://m.acfk.xyz"> <button class="mdui-btn mdui-color-orange mdui-ripple"> <i
-						class="mdui-icon mdui-icon-left material-icons">music_note</i> Music</button> </a>
-				<br>
-				<br>
-				<a href="https://files.acfk.xyz"><button class="mdui-btn mdui-color-theme-accent mdui-ripple"> <i
-						class="mdui-icon mdui-icon-left material-icons">attach_file</i> Cloud Drive</button> </a>
 				<br>
 				<br>
 				<a href="https://g.acfk.xyz"><button class="mdui-btn mdui-color-theme-accent mdui-ripple"> <i
@@ -427,7 +411,7 @@
 		<!-- 评论区 -->
 		<div class="mdui-card-content">子曰：「学而时习之，不亦说乎？有朋自远方来，不亦乐乎？人不知，而不愠，不亦君子乎？」
 			<br>
-			<div id="gitalk"><!-- Preserved for create-gitalk.js --></div>
+			<div id="vcomments"></div>
 		</div>
 	</div>
 
@@ -513,8 +497,7 @@
 	<script src="./js/jq.min.js"></script>
 
 	<!-- Gitalk-->
-	<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-	<script src="./js/create-gitalk.js"></script>
+	<script src="./js/comment.js"></script>
 
 	<!-- Darkmode -->
 	<script src="./js/darkmode.js"></script>
